@@ -1,24 +1,27 @@
+// Matter JS
 const { Engine, Render, Runner, World, Bodies, Body, Events } = Matter;
 const engine = Engine.create();
 const { world } = engine;
 
+// Game screen size
 const width = window.innerWidth;
-const height = window.innerHeight - 4; //otherwise, sometimes a vertical scrollbar appears in Chrome :/
-const cellsHorizontalStart = 3; // start amount of horizontal cells
-let cellsHorizontal = cellsHorizontalStart;
-let cellsHorizontalMax = 4; // max amount of horizontal cells
+const height = window.innerHeight - 4; // otherwise, sometimes a vertical scrollbar appears in Chrome :/
+
+// Game difficulty settings
+const cellsHorizontalStart = 3; // start amount of horizontal cells, fist game size
+const cellsHorizontalMax = 4; // max amount of horizontal cells, last game size
+let cellsHorizontal = cellsHorizontalStart; // the game starts with the easiest level.
 
 const instructions = () => {
+	// TBA: the canvas should only appear when the start button is clicked
 	const startBtn = document.querySelector('#start');
-	startBtn.addEventListener('click', (e) => {
+	startBtn.addEventListener('click', () => {
 		console.log('start button clicked.');
 		document.querySelector('.instructions').classList.add('hidden');
 	});
 };
 
 instructions();
-
-// test comment
 
 const createGameFrame = () => {
 	const render = Render.create({
@@ -235,6 +238,8 @@ const generateNewGame = () => {
 				});
 				if (cellsHorizontal < cellsHorizontalMax) {
 					document.querySelector('.winner').classList.remove('hidden');
+					document.querySelector('#winText').innerHTML = 'You win this time';
+					document.querySelector('#btnRestart').innerHTML = 'Next Stage';
 				}
 				else {
 					document.querySelector('.winner').classList.remove('hidden');
