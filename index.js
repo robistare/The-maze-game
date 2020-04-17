@@ -18,6 +18,8 @@ const instructions = () => {
 
 instructions();
 
+// test comment
+
 const createGameFrame = () => {
 	const render = Render.create({
 		element : document.body,
